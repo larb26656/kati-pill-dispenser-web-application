@@ -139,7 +139,7 @@ $result=$conn->query($sql);
               $sql2 = "SELECT * FROM `pill` WHERE Pill_id = '".$row['Pill_id']."' LIMIT 1";
               $result2=$conn->query($sql2); 
               $row2=$result2->fetch_assoc();
-              $pill_name=$row2['Pill_commonname_'.$strEtclanglabel]." ".unit_convert($row2['Pill_dispenseramount'],$strPillunit);
+              $pill_name="<a href='edit_pill_form.php?pill_id=".$row2['Pill_id']."'>".$row2['Pill_commonname_'.$strEtclanglabel]."</a> ".unit_convert($row2['Pill_dispenseramount'],$strPillunit);
               echo ${"strFaqtype".$row['Conversation_type']."label"}." (".$pill_name.")";
           }
           else{
