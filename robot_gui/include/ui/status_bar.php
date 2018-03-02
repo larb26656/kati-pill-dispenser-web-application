@@ -38,7 +38,7 @@ function checkTime(i) {
 }
    function select_connect_status(){
     $.ajax({
-      type:"POST",
+      type:"GET",
       url:"include/ui/select_connect_status.php",
       success:function(data){
         $("#display_connect_status").html(data);
@@ -51,7 +51,6 @@ select_connect_status();
 setInterval(select_connect_status,500);
 });
 </script>
-
 
         	<nav class="navbar navbar-default navbar-fixed-top">
 			  <div class="container-fluid">
