@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2018 at 05:48 PM
+-- Generation Time: Mar 03, 2018 at 01:19 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -39,7 +39,8 @@ CREATE TABLE `behavior` (
 --
 
 INSERT INTO `behavior` (`Behavior_id`, `Behavior_type`, `Behavior_datetime`, `Schedule_id`, `Pill_id`) VALUES
-(32, 'tookpill', '2018-02-06 17:22:00', 1, 0);
+(32, 'tookpill', '2018-02-06 17:22:00', 0, 9),
+(33, 'tookpill', '2018-02-27 16:43:27', 215, 0);
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,8 @@ CREATE TABLE `behavior_notification` (
 INSERT INTO `behavior_notification` (`Behavior_notification_id`, `Behavior_id`, `Member_id`, `Msg_status`) VALUES
 (29, 30, 1, 0),
 (30, 31, 1, 0),
-(31, 32, 1, 0);
+(31, 32, 1, 0),
+(32, 33, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -138,7 +140,10 @@ INSERT INTO `dispenser` (`Dispenser_id`, `Schedule_id`, `Slot_id`) VALUES
 (260, 209, 19),
 (261, 210, 19),
 (262, 211, 19),
-(263, 212, 19);
+(263, 212, 19),
+(265, 214, 19),
+(266, 214, 20),
+(267, 215, 20);
 
 -- --------------------------------------------------------
 
@@ -211,7 +216,8 @@ INSERT INTO `memo` (`Memo_id`, `Memo_desc`, `Memo_notification_date`, `Memo_noti
 (6, 'asdasd', '2018-02-09', '14:35:00', '', 1),
 (7, 'zzzzz', '0000-00-00', '13:40:00', '0100000', 1),
 (8, 'asdsa', '0000-00-00', '13:35:00', '0100000', 1),
-(9, '8888', '0000-00-00', '13:20:00', '1111111', 1);
+(9, '8888', '0000-00-00', '14:11:00', '1111111', 1),
+(10, 'ทดสอบง่ายๆ', '0000-00-00', '17:33:00', '1111111', 1);
 
 -- --------------------------------------------------------
 
@@ -224,6 +230,13 @@ CREATE TABLE `memo_log` (
   `Memo_id` int(11) NOT NULL,
   `Memo_log_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `memo_log`
+--
+
+INSERT INTO `memo_log` (`Memo_log_id`, `Memo_id`, `Memo_log_datetime`) VALUES
+(7, 10, '2018-03-02 17:34:15');
 
 -- --------------------------------------------------------
 
@@ -286,8 +299,8 @@ INSERT INTO `pill` (`Pill_id`, `Pill_commonname_thai`, `Pill_commonname_english`
 (6, 'หหห', '', 'หห ', '', 'หห', '', 'beforedinner', 3, 3, '2017-09-12', 1),
 (7, 'asd', '', 'asd ', '', 'asd', '', 'painorfever', 2, 2, '2017-11-10', 1),
 (8, 'พาราเซตามอล', 'Paracetamol', 'ทดสอบยา ', 'test ', 'หห', 'ss', 'painorfever', 1, 0, '2017-12-02', 1),
-(9, 'ยาแคปซูลสีฟ้า-ชมพูู', 'ยาแคปซูลสีฟ้า-ชมพูู', 'ยาแคปซูลสีฟ้า-ชมพูู ', 'ยาแคปซูลสีฟ้า-ชมพูู ', 'ยาแคปซูลสีฟ้า-ชมพูู', 'ยาแคปซูลสีฟ้า-ชมพูู', 'painorfever', 1, 15, '2017-12-05', 1),
-(10, 'ยาเม็ดกลมสีขาว', 'ยาเม็ดกลมสีขาว', 'ยาเม็ดกลมสีขาว ', 'ยาเม็ดกลมสีขาว ', 'ยาเม็ดกลมสีขาว', 'ยาเม็ดกลมสีขาว', 'painorfever', 2, 6, '2017-12-05', 1),
+(9, 'ยาแคปซูลสีฟ้า-ชมพูู', 'ยาแคปซูลสีฟ้า-ชมพูู', 'ยาแคปซูลสีฟ้า-ชมพูู ', 'ยาแคปซูลสีฟ้า-ชมพูู ', 'ยาแคปซูลสีฟ้า-ชมพูู', 'ยาแคปซูลสีฟ้า-ชมพูู', 'painorfever', 1, 0, '2017-12-05', 1),
+(10, 'ยาเม็ดกลมสีขาว', 'ยาเม็ดกลมสีขาว', 'ยาเม็ดกลมสีขาว ', 'ยาเม็ดกลมสีขาว ', 'ยาเม็ดกลมสีขาว', 'ยาเม็ดกลมสีขาว', 'painorfever', 2, 12, '2017-12-05', 1),
 (11, 'testt', 'testt', 'test ', 'test ', 'test', 'test', 'beforelunch', 2, 4, '2018-02-09', 1);
 
 -- --------------------------------------------------------
@@ -774,7 +787,10 @@ INSERT INTO `schedule` (`Schedule_id`, `Schedule_time`, `Schedule_visiblestatus`
 (209, '01:10:00', 0),
 (210, '02:05:00', 0),
 (211, '01:05:00', 0),
-(212, '01:05:00', 1);
+(212, '01:05:00', 0),
+(213, '17:48:25', 1),
+(214, '01:05:00', 0),
+(215, '16:43:00', 1);
 
 -- --------------------------------------------------------
 
@@ -941,7 +957,7 @@ ALTER TABLE `slot`
 -- AUTO_INCREMENT for table `behavior`
 --
 ALTER TABLE `behavior`
-  MODIFY `Behavior_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `Behavior_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `behavior_firebase_database_sent_error_log`
 --
@@ -956,7 +972,7 @@ ALTER TABLE `behavior_firebase_notification_sent_error_log`
 -- AUTO_INCREMENT for table `behavior_notification`
 --
 ALTER TABLE `behavior_notification`
-  MODIFY `Behavior_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `Behavior_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `conversation`
 --
@@ -966,7 +982,7 @@ ALTER TABLE `conversation`
 -- AUTO_INCREMENT for table `dispenser`
 --
 ALTER TABLE `dispenser`
-  MODIFY `Dispenser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
+  MODIFY `Dispenser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -976,12 +992,12 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `memo`
 --
 ALTER TABLE `memo`
-  MODIFY `Memo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Memo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `memo_log`
 --
 ALTER TABLE `memo_log`
-  MODIFY `Memo_log_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Memo_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `outsider`
 --
@@ -1021,7 +1037,7 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `Schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `Schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
 --
 -- AUTO_INCREMENT for table `slot`
 --

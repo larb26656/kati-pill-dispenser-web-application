@@ -27,20 +27,20 @@ var slot_id_temp = [];
         $( "#hours" ).change(function() {
           select_minutes_edit($('#hours').val(),<?php echo $Schedule_id;?>);
         });
-        //add database data temp      
-        <?php 
+        //add database data temp
+        <?php
         include("connect.php");
         $sql = "SELECT * FROM `schedule` WHERE Schedule_id='$Schedule_id'";
-        $result=$conn->query($sql); 
+        $result=$conn->query($sql);
         $row=$result->fetch_assoc();
         $sql2 = "SELECT * FROM `dispenser` INNER JOIN slot ON dispenser.Slot_id = slot.Slot_id INNER JOIN pill ON slot.Pill_id = pill.Pill_id WHERE Schedule_id = '$Schedule_id'";
-        $result2=$conn->query($sql2); 
+        $result2=$conn->query($sql2);
          while($row2=$result2->fetch_assoc()){
          ?>
         insert_slot_id_temp_first_time("<?php echo $row2['Slot_id']?>");
-        select_slot_temp();
-        select_slot();
          <?php  } ?>
+         select_slot_temp();
+         select_slot();
          // form submit
         jQuery.validator.addMethod("check_slot_temp_length", function(value, element) {
           if(value>0){
@@ -192,12 +192,12 @@ slot_id_temp.push(id);
 </script>
 </head>
 <body>
-<div id="wrapper">  
+<div id="wrapper">
       <?php include("menu.php"); ?>
      <div id="page-wrapper">
        <div class="container-fluid">
       <ul class="sub_menu">
-     
+
   <li class="brand"><?php echo $strSchedule;?></li>
   <li><a href="display_schedule.php" class="display"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $strSubmenudisplayinformation;?></a></li>
     <li><a href="#" class="add"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo $strSubmenuinsertinfomation;?></a></li>
@@ -226,13 +226,13 @@ slot_id_temp.push(id);
     <input type="hidden" id="slot_temp_num" name="slot_temp_num"/>
     </div>
   </div>
-  <div class="form-group"> 
+  <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-default"><?php echo $strFormsubmitbutton;?></button>
     </div>
   </div>
 </form>
-  
+
 </div>
   </div>
 </div>
@@ -249,7 +249,7 @@ slot_id_temp.push(id);
         <h4 class="modal-title"><?php echo $strScheduleslotinserttitle;?></h4>
       </div>
       <div class="modal-body" id="Display_slot" name="Display_slot">
-  
+
       </div>
     </div>
 
