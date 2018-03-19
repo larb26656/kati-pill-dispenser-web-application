@@ -11,7 +11,7 @@ include("session_check.php");?>
 <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Mitr|Athiti" rel="stylesheet">
 <link href="bootstrap/css/custom.css" rel="stylesheet"/>
-<script src="DataTables-1.10.15/media/js/jquery.dataTables.min.js"></script>  
+<script src="DataTables-1.10.15/media/js/jquery.dataTables.min.js"></script>
 <script src="DataTables-1.10.15/media/js/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="bootstrap-daterangepicker-master/daterangepicker.css" />
  <script type="text/javascript" src="bootstrap-daterangepicker-master/moment.js"></script>
@@ -31,17 +31,18 @@ include("session_check.php");?>
 </script>
 </head>
 <body>
-<?php 
+<?php
 include("connect.php"); ?>
-<div id="wrapper">  
+<div id="wrapper">
       <?php include("menu.php"); ?>
      <div id="page-wrapper">
        <div class="container-fluid">
       <ul class="sub_menu">
-     
+
   <li class="brand"><?php echo $strReport;?></li>
   <li><a href="report_behavior.php" class="behavior"><i class="fa fa-line-chart" aria-hidden="true"></i> <?php echo $strSubmenubehaviorinformation;?></a></li>
     <li><a href="#" class="pill_log"><i class="fa fa-line-chart" aria-hidden="true"></i> <?php echo $strSubmenupillinformation;?></a></li>
+<li><a href="report_log.php" class="log" ><i class="fa fa-line-chart" aria-hidden="true"></i> <?php echo $strSubmenuloginformation;?></a></li>
 </ul>
      </div>
       <div class="col-md-12">
@@ -89,7 +90,7 @@ include("connect.php"); ?>
   </table>
   </div>
   </div>
-  <?php } 
+  <?php }
 
 else{
   ?>
@@ -106,8 +107,8 @@ else{
 
 </div>
 </body>
-<script>  
- $(document).ready(function(){  
+<script>
+ $(document).ready(function(){
       $('.table').DataTable({
         ordering: false,
  "language": {
@@ -131,8 +132,8 @@ else{
 }, function(start, end, label) {
   console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
 });
-      
-} ); 
 
- </script>  
+} );
+
+ </script>
 </html>

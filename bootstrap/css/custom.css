@@ -5,11 +5,11 @@
     /*html, body, #wrapper, #page-wrapper {height: 100%; overflow: hidden;}*/
 }
 #wrapper {
-    padding-left: 0;    
+    padding-left: 0;
 }
 
 #page-wrapper {
-    width: 100%;        
+    width: 100%;
     padding: 0;
     display: none;
 }
@@ -97,18 +97,20 @@ background: linear-gradient(to top, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Fir
         width: 70px;
         text-align: center;
         color: #FFFFFF;
-   
+
     }
      .side-nav>li>a.active {
         color: #00c6ff;
         background-color: #FFFFFF;
+        word-wrap:break-word;
     }
 
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
         background-color: #FFFFFF !important;
-        color: #00c6ff; 
+        word-wrap:break-word;
+        color: #00c6ff;
 
     }
 }
@@ -124,7 +126,7 @@ background: linear-gradient(to top, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Fir
     padding: 10px 15px 10px 38px;
     text-decoration: none;
     /*color: #999;*/
-    color: #fff;    
+    color: #fff;
 }
 
 .side-nav>li>ul>li>a:hover {
@@ -244,7 +246,7 @@ display : block;
 }
 .dashboard_info{
     color: #777777;
-    
+
 }
 .badge-notify{
    background: #FF8C7C;
@@ -257,13 +259,13 @@ display : block;
 }
 .notification-list>li>a {
         color:  #777777;
-   
+
     }
 
     .notification-list li a:hover,
     .notification-list li a:focus {
         outline: none;
-        color:  #777777; 
+        color:  #777777;
 
     }
 }

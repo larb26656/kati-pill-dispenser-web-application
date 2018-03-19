@@ -8,7 +8,7 @@
 	$strNavbarlogout = "Logout";
 	$strCurrentlang = "English";
 	$strThailang = "Thai";
-	$strEnglishlang = "English"; 
+	$strEnglishlang = "English";
 	$strDashboard = "Dashboard";
 	$strPerson = "Person";
 	$strPill = "Pill";
@@ -28,7 +28,7 @@
 	$strNoNextNotification = "No next notification.";
 	$strNumofpatientforgottotakepill = "Num of patient forgot to take pill";
 	$strTimesunit = "Time";
-	
+
 	//select slot//
 	$strNumofpill = "Amount";
 	$strPillunit = "Pill";
@@ -79,6 +79,7 @@
 	$strSubmenueditinfomation = "Edit information";
 	$strSubmenubehaviorinformation= "Behavior information";
 	$strSubmenupillinformation = "Pill information";
+	$strSubmenuloginformation = "Log information";
 
 	//person
 	$strPersonmembertab = "Member";
@@ -115,28 +116,28 @@
 	$strPersontokenduplicate ="Duplicate token please fix it.";
 
 	//pill
-	$strPillnamelabel = "Name";	
-	$strPillcommonnamelabel = "Commonname";	
-	$strPillthaicommonnamelabel = "Thai commonname";	
-	$strPillenglishcommonnamelabel = "English commonname";	
+	$strPillnamelabel = "Name";
+	$strPillcommonnamelabel = "Commonname";
+	$strPillthaicommonnamelabel = "Thai commonname";
+	$strPillenglishcommonnamelabel = "English commonname";
 	$strPillbrandnamelabel = "Brandname";
 	$strPillthaibrandnamelabel = "Thai brandname";
 	$strPillenglishbrandnamelabel = "English brandname";
-	$strPillpropertieslabel = "Properties";	
+	$strPillpropertieslabel = "Properties";
 	$strPillthaipropertieslabel = "Thai properties";
 	$strPillenglishpropertieslabel = "English properties";
-	$strPillmethodlabel = "Method to take pill";	
+	$strPillmethodlabel = "Method to take pill";
 	$strPillleftlabel = "Pill left";
 	$strPillexpirydatelabel = "Expiry date";
 	$strPilldurationlabel = "Duration";
 	$strPilldurationtakelabel = "Take";
 	$strPilldurationblanklabel = "--Choose duration--";
 	$strPilldurationpainorfeverlabel = "When you have pain or fever.";
-	$strPilldurationbeforebreakfastlabel = "Before breakfast.";	
+	$strPilldurationbeforebreakfastlabel = "Before breakfast.";
 	$strPilldurationbeforelunchlabel = "Before lunch.";
 	$strPilldurationbeforedinnerlabel = "Before dinner.";
 	$strPilldispenseramount = "Num of pill have to take";
-	$strPillamount = "Amount";	
+	$strPillamount = "Amount";
 	$strPillthaicommonnameisblank = "Thai commonname is required.";
 	$strPillenglishcommonnameisblacnk = "English commonname is required.";
 	$strPillthaibrandnameisblank = "Thai brandname is required.";
@@ -150,14 +151,14 @@
 
 	//schedule
 	$strSchedulemonday = "MON";
-	$strScheduletuesday = "TUE";		
-	$strSchedulewednesday = "WED";		
-	$strSchedulethursday = "THU";		
-	$strSchedulefriday = "FRI";								
-	$strSchedulesaturday = "SAT";		
-	$strSchedulesunday = "SUN";	
+	$strScheduletuesday = "TUE";
+	$strSchedulewednesday = "WED";
+	$strSchedulethursday = "THU";
+	$strSchedulefriday = "FRI";
+	$strSchedulesaturday = "SAT";
+	$strSchedulesunday = "SUN";
 	$strSchedulejanuary = "January";
-	$strSchedulefebruary = "February";	
+	$strSchedulefebruary = "February";
 	$strSchedulemarch = "March";
 	$strScheduleapril = "April";
 	$strSchedulemay = "May";
@@ -224,6 +225,14 @@
 	$strpillreportmessagelabel="Message";
 	$strpillreportstatusalmostoutofstocklabel="is almost out of stock";
 	$strpillreportstatusoutofstocklabel="is out of stock";
+
+	//log report
+	$strlogreportdatelabel="Date";
+	$strlogreportmanagelabel="Manage";
+	$strlogreporttimelabel="Time";
+	$strlogreportlevellabel="Level";
+	$strlogreportmessagelabel="Message";
+
 	//datepicker
 	$strdatepickerdatelabel ="Date";
 	$strdatepickersearchbutton ="Search";
@@ -238,6 +247,7 @@
 	$strTablerecoverybutton = "Recovery";
 	$strTablechoosebutton = "Choose";
 	$strTableremovebutton = "Remove";
+	$strTableviewbutton = "View";
 	$strTablelengthmenu = "Show _MENU_ record per 1 page.";
 	$strTablezerorecords = "Found 0 record.";
 	$strTableinfo = "Page _PAGE_ of _PAGES_";
@@ -267,7 +277,7 @@
 
 	//loading
 	$strLoadinglabel="Loading...";
-	
+
 	//password recovery
 	$strPasswordrecoverylabel="Kati password recovery";
 	$strPasswordrecoveryusernamelabel="Your username is";

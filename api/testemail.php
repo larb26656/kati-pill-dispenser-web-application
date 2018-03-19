@@ -17,17 +17,17 @@
 	$mail->From = "test@aaaa.com"; // "name@yourdomain.com";
 	//$mail->AddReplyTo = "support@thaicreate.com"; // Reply
 	$mail->FromName = "Mr.Weerachai Nukitram";  // set from Name
-	$mail->Subject = "Test sending mail."; 
+	$mail->Subject = "Test sending mail.";
 	$mail->Body = "My Body & <b>My Description</b>";
 
 	$mail->AddAddress("larb26656@gmail.com", "Mr.Adisorn Boonsong"); // to Address
 
-	$mail->Subject = "Test sending mail."; 
+	$mail->Subject = "Test sending mail.";
 	$mail->Body = "My Body & <b>My Description</b>";
 
 	$mail->set('X-Priority', '1'); //Priority 1 = High, 3 = Normal, 5 = low
 
-	$mail->Send(); 
+	$mail->Send();
 ?>
 </body>
 </html>

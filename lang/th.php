@@ -8,7 +8,7 @@
 	$strNavbarlogout = "ออกจากระบบ";
 	$strCurrentlang = "ไทย";
 	$strThailang = "ไทย";
-	$strEnglishlang = "อังกฤษ"; 
+	$strEnglishlang = "อังกฤษ";
 	$strDashboard = "แผงควบคุม";
 	$strPerson = "บุคคล";
 	$strPill = "ยา";
@@ -29,7 +29,7 @@
 	$strNoNextNotification = "ไม่มีการแจ้งเตือน";
 	$strNumofpatientforgottotakepill = "จำนวนที่ผู้ป่วยลืมกินยาในวันนี้";
 	$strTimesunit = "ครั้ง";
-	
+
 	//select slot//
 	$strNumofpill = "จำนวน";
 	$strPillunit = "เม็ด";
@@ -79,6 +79,7 @@
 	$strSubmenueditinfomation = "แก้ไขข้อมูล";
 	$strSubmenubehaviorinformation= "ข้อมูลพฤติกรรมผู้ป่วย";
 	$strSubmenupillinformation = "ข้อมูลยา";
+	$strSubmenuloginformation = "ข้อมูล Log";
 
 	//person
 	$strPersonmembertab = "สมาชิก";
@@ -115,24 +116,24 @@
 	$strPersontokenduplicate ="โทเค่นถูกใช้แล้ว โปรดเปลี่ยนโทเค่นใหม่อีกครั้ง";
 
 	//pill
-	$strPillnamelabel = "ชื่อ";	
+	$strPillnamelabel = "ชื่อ";
 	$strPillcommonnamelabel = "ชื่อสามัญ";
-	$strPillthaicommonnamelabel = "ชื่อสามัญภาษาไทย";	
-	$strPillenglishcommonnamelabel = "ชื่อสามัญภาษาอังกฤษ";		
+	$strPillthaicommonnamelabel = "ชื่อสามัญภาษาไทย";
+	$strPillenglishcommonnamelabel = "ชื่อสามัญภาษาอังกฤษ";
 	$strPillbrandnamelabel = "ชื่อทางการค้า";
 	$strPillthaibrandnamelabel = "ชื่อทางการค้าภาษาไทย";
 	$strPillenglishbrandnamelabel = "ชื่อทางการค้าภาษาอังกฤษ";
 	$strPillpropertieslabel = "สรรพคุณ";
 	$strPillthaipropertieslabel = "สรรพคุณภาษาไทย";
-	$strPillenglishpropertieslabel = "สรรพคุณภาษาอังกฤษ";	
-	$strPillmethodlabel = "วิธีรับประทาน";	
+	$strPillenglishpropertieslabel = "สรรพคุณภาษาอังกฤษ";
+	$strPillmethodlabel = "วิธีรับประทาน";
 	$strPillleftlabel = "จำนวนคงเหลือ";
 	$strPillexpirydatelabel = "วันที่หมดอายุ";
 	$strPilldurationlabel = "ช่วงเวลาที่ต้องรับประทาน";
 	$strPilldurationtakelabel = "รับประทาน";
 	$strPilldurationblanklabel = "--เลือก ช่วงเวลาที่ต้องรับประทาน--";
 	$strPilldurationpainorfeverlabel = "เมื่อมีอาการปวดหรือมีไข้";
-	$strPilldurationbeforebreakfastlabel = "หลังอาหารเช้า";	
+	$strPilldurationbeforebreakfastlabel = "หลังอาหารเช้า";
 	$strPilldurationbeforelunchlabel = "หลังอาหารกลางวัน";
 	$strPilldurationbeforedinnerlabel = "หลังอาหารเย็น";
 	$strPilldispenseramount = "จำนวนที่ต้องรับประทาน";
@@ -149,14 +150,14 @@
 	$strPillexpirydateisblank = "โปรดระบุวันที่หมดอายุ";
 	//schedule
 	$strSchedulemonday = "จันทร์";
-	$strScheduletuesday = "อังคาร";		
-	$strSchedulewednesday = "พุธ";		
-	$strSchedulethursday = "พฤหัสบดี";		
-	$strSchedulefriday = "ศุกร์";								
-	$strSchedulesaturday = "เสาร์";		
-	$strSchedulesunday = "อาทิตย์";	
+	$strScheduletuesday = "อังคาร";
+	$strSchedulewednesday = "พุธ";
+	$strSchedulethursday = "พฤหัสบดี";
+	$strSchedulefriday = "ศุกร์";
+	$strSchedulesaturday = "เสาร์";
+	$strSchedulesunday = "อาทิตย์";
 	$strSchedulejanuary = "มกราคม";
-	$strSchedulefebruary = "กุมภาพันธ์";	
+	$strSchedulefebruary = "กุมภาพันธ์";
 	$strSchedulemarch = "มีนาคม";
 	$strScheduleapril = "เมษายน";
 	$strSchedulemay = "พฤษภาคม";
@@ -217,13 +218,19 @@
 	$strbehaviorreportstatusforgottakepilllabel="ผู้ป่วยลืมรับประทานยา";
 	$strbehaviorreportstatuscomebutnotakepilllabel="ผู้ป่วยมาหน้าเครื่องแต่ไม่ได้รับยา";
 
-
 	//pill report
 	$strpillreportdatelabel="วันที่";
 	$strpillreporttimelabel="เวลา";
 	$strpillreportmessagelabel="ข้อความ";
 	$strpillreportstatusalmostoutofstocklabel="ใกล้หมด";
 	$strpillreportstatusoutofstocklabel="หมด";
+
+	//log report
+	$strlogreportdatelabel="วันที่";
+	$strlogreportmanagelabel="จัดการ";
+	$strlogreporttimelabel="เวลา";
+	$strlogreportlevellabel="ระดับ";
+	$strlogreportmessagelabel="ข้อความ";
 
 	//datepicker
 	$strdatepickerdatelabel ="วันที่";
@@ -239,6 +246,7 @@
 	$strTablerecoverybutton = "กู้คืน";
 	$strTablechoosebutton = "เลือก";
 	$strTableremovebutton = "นำออก";
+	$strTableviewbutton = "เรียกดู";
 	$strTablelengthmenu = "แสดง _MENU_ เรคคอร์ด ต่อ 1 หน้า";
 	$strTablezerorecords = "พบ 0 เรคคอร์ด";
 	$strTableinfo = "หน้า _PAGE_ จาก _PAGES_";
@@ -299,7 +307,7 @@
 	function unit_convert_with_max_num($num,$maxnum,$unit) {
 			return $num."/".$maxnum." ".$unit;
 	}
-		function behavior_format_convert($status,$pills) {
+	function behavior_format_convert($status,$pills) {
 		if($status=="tookpill"){
 			return $GLOBALS['strbehaviorreportstatustookpilllabel']." ".$pills;
 		}
