@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include("../../lang_check.php"); ?>
 <script type="text/javascript">
@@ -7,15 +7,15 @@ include("../../lang_check.php"); ?>
     });
 </script>
 <ul class="sub_menu">
-     
+
   <li class="brand">
   <?php echo $strSchedule;?>
   </li>
   <li>
   <a href="#" class="display"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $strSubmenudisplayinformation;?></a>
   </li>
-  </ul> 
-<?php 
+  </ul>
+<?php
 include("../../connect.php");
 ?>
 <div class="row">
@@ -24,9 +24,9 @@ include("../../connect.php");
   </div>
 <div class="row">
 <dำiv class="col-md-12">
-<?php 
-$sql = "SELECT * FROM `schedule` WHERE Schedule_visiblestatus ='1'";
-$result=$conn->query($sql); 
+<?php
+$sql = "SELECT * FROM `schedule` WHERE Schedule_visiblestatus ='1' ORDER BY Schedule_time";
+$result=$conn->query($sql);
 $num_row = mysqli_num_rows($result);
 if($num_row >= 1){
   ?>
@@ -38,7 +38,7 @@ if($num_row >= 1){
         <th><?php echo $strSchedulepillhavetodispenserlabel;?></th>
         <th><?php echo $strTableedit;?></th>
         <th><?php echo $strTablemanage;?></th>
-      
+
 
       </tr>
     </thead>
@@ -71,7 +71,7 @@ else{?>
 <?php } ?>
 </div>
 </div>
-<?php 
+<?php
 if($_POST['day']<=9){
         $day = '0'.$_POST['day'];
         }
@@ -94,7 +94,7 @@ $date=$year."-".$month."-".$day;
 <div class="row">
 <div class="col-md-12">
 <?php
-$sql2 = "SELECT * FROM `memo` WHERE `Memo_notification_day` ='' AND Memo_notification_date='$date' AND Memo_visiblestatus ='1'";
+$sql2 = "SELECT * FROM `memo` WHERE `Memo_notification_day` ='' AND Memo_notification_date='$date' AND Memo_visiblestatus ='1' ORDER BY Memo_notification_time";
 $result2 = mysqli_query($conn, $sql2);
 $num_row2 = mysqli_num_rows($result2);
 if($num_row2 >= 1){
@@ -108,7 +108,7 @@ if($num_row2 >= 1){
         <th><?php echo $strSchedulemessagetextlabel;?></th>
         <th><?php echo $strTableedit;?></th>
         <th><?php echo $strTablemanage;?></th>
-      
+
 
       </tr>
     </thead>
@@ -145,7 +145,7 @@ else{?>
   </div>
   <div class="row">
 <div class="col-md-12">
-<?php 
+<?php
 $date_cal = explode("-",$date);
 $jd=cal_to_jd(CAL_GREGORIAN,$date_cal[1],$date_cal[2],$date_cal[0]); //2011-01-29
 $day_text=jddayofweek($jd,1);
@@ -170,7 +170,7 @@ elseif($day_text=='Friday'){
 else{
    $day_location='7';
 }
-$sql3 = "SELECT * FROM `memo` WHERE SUBSTR(Memo_notification_day,$day_location,1)='1'  AND Memo_notification_date ='0000-00-00' AND Memo_visiblestatus ='1' ORDER BY `Memo_notification_date`";
+$sql3 = "SELECT * FROM `memo` WHERE SUBSTR(Memo_notification_day,$day_location,1)='1'  AND Memo_notification_date ='0000-00-00' AND Memo_visiblestatus ='1' ORDER BY `Memo_notification_time`";
 $result3 = mysqli_query($conn, $sql3);
 $num_row3 = mysqli_num_rows($result3);
 if($num_row3 >= 1){
@@ -183,7 +183,7 @@ if($num_row3 >= 1){
         <th><?php echo $strSchedulemessagetextlabel;?></th>
         <th><?php echo $strTableedit;?></th>
         <th><?php echo $strTablemanage;?></th>
-      
+
 
       </tr>
     </thead>

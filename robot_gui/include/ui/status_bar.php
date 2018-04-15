@@ -1,7 +1,7 @@
-<?php 
+<?php
 include("../connect.php");
 $sql = "SELECT * FROM `robot_setting` INNER JOIN provinces ON robot_setting.Provinces_id=provinces.Provinces_id ";
-$result=$conn->query($sql); 
+$result=$conn->query($sql);
 $row=$result->fetch_assoc();
 ?>
 <style type="text/css">
@@ -62,8 +62,7 @@ setInterval(select_connect_status,500);
 			   <ul class="nav navbar-nav navbar-right">
            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> <span class="label label-success"><?php echo $row['Provinces_name_'.$strEtclanglabel];?></span></a></li>
            <li id="display_connect_status" name="display_connect_status"></li>
-          <li><a href="lang/thai_lang_select.php"><i class="fa fa-globe" aria-hidden="true"></i> <span class="label label-primary"><?php echo $strCurrentlang;?></span></a></li>
+          <li><a href="#"><i class="fa fa-globe" aria-hidden="true"></i> <span class="label label-primary"><?php echo $strCurrentlang;?></span></a></li>
       </ul>
 			  </div>
 			</nav>
-		
