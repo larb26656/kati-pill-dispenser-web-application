@@ -95,6 +95,7 @@
 	$strPersonlevelblanklabel = "--เลือก ระดับ--";
 	$strPersonlevelcaregiverlabel = "ผู้ดูแลผู้ป่วย";
 	$strPersonleveldoctorlabel = "แพทย์";
+	$strPersonlevelpatientlabel = "ผู้ป่วย";
 	$strPersontokenlabel = "โทเค่น";
 	$strPersonfirstnameisblank = "โปรดระบุชื่อจริง";
 	$strPersonlastnameisblank = "โปรดระบุนามสกุล";

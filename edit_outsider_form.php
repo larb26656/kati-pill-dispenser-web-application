@@ -19,7 +19,7 @@ include("session_check.php");?>
  function showPreview(ele){
                 $('#img-product').attr('src', ele.value);
                     if (ele.files && ele.files[0]) {
-                        var reader = new FileReader();        
+                        var reader = new FileReader();
                         reader.onload = function(e) {
                             $('#img-product').attr('src', e.target.result);
                         }
@@ -47,7 +47,7 @@ include("session_check.php");?>
                     return $( "#Outsider_id" ).val();
                   }
                 }
-            }            
+            }
           }
         },
         messages: {
@@ -56,7 +56,7 @@ include("session_check.php");?>
           Outsider_level: '<?php echo $strPersonlevelisblank;?>',
           Outsider_token: {
             required: '<?php echo $strPersontokenisblank;?>',
-            remote: '<?php echo $strPersontokenduplicate;?>'   
+            remote: '<?php echo $strPersontokenduplicate;?>'
         }
         },
         errorElement: "em",
@@ -76,7 +76,7 @@ include("session_check.php");?>
         unhighlight: function (element, errorClass, validClass) {
           $( element ).parents( ".input-container" ).addClass( "has-success" ).removeClass( "has-error" );
         },
-       submitHandler: function(form) {     
+       submitHandler: function(form) {
             var fData = new FormData(document.getElementById("update_outsider"));
   $.ajax({
    'type':"POST",
@@ -87,7 +87,7 @@ include("session_check.php");?>
     'cache':false,
     'success':function(data) {
           window.location="display_person.php";
-         
+
     },
     'error':function(jqXHR,text,error) { alert(error); }
   });
@@ -99,17 +99,17 @@ include("session_check.php");?>
 </head>
 <body>
 <?php $outsider_id = $_GET['outsider_id'];
-include("connect.php"); 
+include("connect.php");
 $sql = "SELECT * FROM `outsider` WHERE Outsider_id = '$outsider_id'";
-$result=$conn->query($sql); 
+$result=$conn->query($sql);
 $row=$result->fetch_assoc();?>
-<div id="wrapper">  
+<div id="wrapper">
 
       <?php include("menu.php"); ?>
      <div id="page-wrapper">
        <div class="container-fluid">
         <ul class="sub_menu">
-     
+
   <li class="brand"><?php echo $strPerson;?></li>
   <li><a href="display_person.php" class="display"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo $strSubmenudisplayinformation;?></a></li>
     <li><a href="insert_person_form.php" class="add"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo $strSubmenuinsertinfomation;?></a></li>
@@ -135,7 +135,7 @@ $row=$result->fetch_assoc();?>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2" for="Outsider_level"><?php echo $strPersonlevellabel;?></label>
-    <div class="col-sm-4 input-container"> 
+    <div class="col-sm-4 input-container">
        <select class="form-control" id="Outsider_level" name="Outsider_level">
       <option value="caregiver" <?php if("caregiver"==$row['Outsider_level']){echo 'selected="selected"';}?>>
          <?php echo $strPersonlevelcaregiverlabel;?>
@@ -143,6 +143,9 @@ $row=$result->fetch_assoc();?>
            <option value="doctor" <?php if("doctor"==$row['Outsider_level']){echo 'selected="selected"';}?>>
                    <?php echo $strPersonleveldoctorlabel;?>
             </option>
+            <option value="patient" <?php if("patient"==$row['Outsider_level']){echo 'selected="selected"';}?>>
+                    <?php echo $strPersonlevelpatientlabel;?>
+             </option>
   </select>
     </div>
   </div>
@@ -152,7 +155,7 @@ $row=$result->fetch_assoc();?>
       <textarea class="form-control" rows="7" id="comment" id="Outsider_token" name="Outsider_token"><?php echo $row['Outsider_token'];?></textarea>
     </div>
   </div>
-  <div class="form-group"> 
+  <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-default"><?php echo $strFormeditbutton;?></button>
     </div>

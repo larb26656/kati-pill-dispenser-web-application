@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2018 at 01:19 AM
+-- Generation Time: Apr 18, 2018 at 03:43 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -40,7 +40,15 @@ CREATE TABLE `behavior` (
 
 INSERT INTO `behavior` (`Behavior_id`, `Behavior_type`, `Behavior_datetime`, `Schedule_id`, `Pill_id`) VALUES
 (32, 'tookpill', '2018-02-06 17:22:00', 0, 9),
-(33, 'tookpill', '2018-02-27 16:43:27', 215, 0);
+(33, 'tookpill', '2018-02-27 16:43:27', 215, 0),
+(34, 'tookpill', '2018-04-17 12:51:03', 2, 0),
+(35, 'tookpill', '2018-04-17 12:51:11', 2, 0),
+(36, 'tookpill', '2018-04-17 12:51:19', 2, 0),
+(37, 'tookpill', '2018-04-17 12:52:09', 2, 0),
+(38, 'tookpill', '2018-04-17 12:53:46', 2, 0),
+(39, 'tookpill', '2018-04-17 12:53:59', 2, 0),
+(40, 'tookpill', '2018-04-18 02:54:12', 0, 1),
+(41, 'tookpill', '2018-04-18 02:54:49', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -86,7 +94,15 @@ INSERT INTO `behavior_notification` (`Behavior_notification_id`, `Behavior_id`, 
 (29, 30, 1, 0),
 (30, 31, 1, 0),
 (31, 32, 1, 0),
-(32, 33, 1, 0);
+(32, 33, 1, 0),
+(33, 34, 1, 1),
+(34, 35, 1, 1),
+(35, 36, 1, 1),
+(36, 37, 1, 1),
+(37, 38, 1, 1),
+(38, 39, 1, 1),
+(39, 40, 1, 1),
+(40, 41, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -118,7 +134,8 @@ INSERT INTO `conversation` (`Conversation_id`, `Conversation_quiz`, `Conversatio
 (10, 'date', 'date', 'english', 0, 1),
 (11, 'time', 'time', 'english', 0, 1),
 (12, 'เตือนความจำ', 'memo', 'thai', 0, 1),
-(13, 'memo', 'memo', 'english', 0, 1);
+(13, 'memo', 'memo', 'english', 0, 1),
+(14, 'คิดเลข', 'calculator', 'thai', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -143,7 +160,10 @@ INSERT INTO `dispenser` (`Dispenser_id`, `Schedule_id`, `Slot_id`) VALUES
 (263, 212, 19),
 (265, 214, 19),
 (266, 214, 20),
-(267, 215, 20);
+(267, 215, 20),
+(268, 216, 19),
+(269, 216, 20),
+(270, 217, 19);
 
 -- --------------------------------------------------------
 
@@ -216,8 +236,14 @@ INSERT INTO `memo` (`Memo_id`, `Memo_desc`, `Memo_notification_date`, `Memo_noti
 (6, 'asdasd', '2018-02-09', '14:35:00', '', 1),
 (7, 'zzzzz', '0000-00-00', '13:40:00', '0100000', 1),
 (8, 'asdsa', '0000-00-00', '13:35:00', '0100000', 1),
-(9, '8888', '0000-00-00', '14:11:00', '1111111', 1),
-(10, 'ทดสอบง่ายๆ', '0000-00-00', '17:33:00', '1111111', 1);
+(9, '8888', '0000-00-00', '14:11:00', '1111111', 0),
+(10, 'ทดสอบง่ายๆ', '0000-00-00', '17:33:00', '1111111', 0),
+(11, 'ถ้ากินข้าว', '2018-03-15', '14:00:00', '', 1),
+(12, 'dasd', '2018-04-14', '15:05:00', '', 1),
+(13, 'asdas', '2018-04-14', '06:10:00', '', 1),
+(14, 'sdasd', '0000-00-00', '03:20:00', '1010000', 0),
+(15, 'fghfgh', '0000-00-00', '02:30:00', '1111111', 0),
+(16, 'ทดสอบบ', '0000-00-00', '10:30:00', '1111111', 1);
 
 -- --------------------------------------------------------
 
@@ -236,7 +262,19 @@ CREATE TABLE `memo_log` (
 --
 
 INSERT INTO `memo_log` (`Memo_log_id`, `Memo_id`, `Memo_log_datetime`) VALUES
-(7, 10, '2018-03-02 17:34:15');
+(7, 10, '2018-03-02 17:34:15'),
+(8, 16, '2018-04-15 10:31:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message_firebase_notification_sent_error_log`
+--
+
+CREATE TABLE `message_firebase_notification_sent_error_log` (
+  `Message_firebase_notification_sent_error_log_id` int(11) NOT NULL,
+  `Message_desc` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -248,7 +286,7 @@ CREATE TABLE `outsider` (
   `Outsider_id` int(11) NOT NULL,
   `Outsider_firstname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Outsider_surname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Outsider_level` enum('caregiver','doctor') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Outsider_level` enum('caregiver','doctor','patient') COLLATE utf8mb4_unicode_ci NOT NULL,
   `Outsider_token` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Outsider_visiblestatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -258,12 +296,13 @@ CREATE TABLE `outsider` (
 --
 
 INSERT INTO `outsider` (`Outsider_id`, `Outsider_firstname`, `Outsider_surname`, `Outsider_level`, `Outsider_token`, `Outsider_visiblestatus`) VALUES
-(1, 'นายต่อลาภs', 'ไทยเขียว', 'doctor', 'dTKDp_ehhbw:APA91bGpUSvPk72vFHZAzcbKBGw4jWBoDFLfcwY5_6rIKyZg_G8ISOeVirFeVCnVZS7wYCunvSIJxuL3CCyGDOhI6ylylqN3PQhlhFC5amyX8Bf8Gyu1XDz2oeldcOxv8jRQuM-_1t_j', 1),
-(12, 'sss', 'ไทยเขียว2', 'caregiver', 'eDMWVXGQkaI:APA91bG6hY4DKkJiCUuW-hNLpEZFFjNcQV8-tjVCpOkHvW4io8NoaJq6QBxeviBTthsEgaQWpj7YVXz3wQeoQXVtMYLwdoG-shbETwIPcOSsSVSoBObQy4oNOBkEfH8m23XB7UICfLCq', 1),
+(1, 'นายต่อลาภs', 'ไทยเขียว', 'doctor', 'fKhcd5swQms:APA91bEudi4LsaKIJ6lou5sPR4cMdv2m03xOBXdEOMfKbqQmndJjKh6qYMqNmpJVQtgkbRVvqkUyfZw9oSevN331ftuLJKkeXY-ORO9d9DlksaG8JIqMMiNW6RPUMdUP1mqQYbh_NlSd', 1),
+(12, 'sss', 'ไทยเขียว2', 'caregiver', 'eDMWVXGQkaI:APA91bG6hY4DKkJiCUuW-hNLpEZFFjNcQV8-tjVCpOkHvW4io8NoaJq6QBxeviBTthsEgaQWpj7YVXz3wQeoQXVtMYLwdoG-shbETwIPcOSsSVSoBObQy4oNOBkEfH8m23XB7UICfLCq', 0),
 (13, 'สมชุบ', 'ทองเปรม', '', '123456', 0),
-(14, 'สมชาย', 'อดนอน', '', 'cXQrylpGvgc:APA91bFYTllY_cHP4mkD_Zy8xNk9gigwN3P8NQD1uq0FYzT1y1lfOCTW9ZGqFxtPnE_TIWS380R1Hbro4sxSVVBOwbttqArdn32Njyd46NGRPpat0qUzZULPauaGDGpVccVfn-oD5PpO', 1),
+(14, 'สมชาย', 'อดนอน', 'patient', 'dEmAPcx0lXE:APA91bEvgBOIzqCkRyfKjiycsVoDEhv75jOkQJDYcb5L9GyAUyS3-RnWeIBQihxzefzJhcTvhIhlSxTFJL4SGFc8Gkd5V0jge_-AlhBLpXiLS8q2TM_f9miBZVvNUndL_Gxsg1nSK44v', 1),
 (15, 'test', 'tttt', 'doctor', '111', 0),
-(16, 'asdxxx', 'asd', 'caregiver', 's', 1);
+(16, 'asdxxx', 'asd', 'caregiver', 's', 0),
+(17, 'asda', 'sdas', 'patient', 'sdas', 0);
 
 -- --------------------------------------------------------
 
@@ -467,7 +506,17 @@ INSERT INTO `pill_log` (`Pill_log_id`, `Pill_log_type`, `Pill_log_datetime`, `Pi
 (146, 'almostoutofstock', '2018-02-06 16:00:00', 9),
 (147, 'almostoutofstock', '2018-02-06 16:02:23', 9),
 (148, 'almostoutofstock', '2018-02-06 17:15:19', 9),
-(149, 'outofstock', '2018-02-06 17:21:40', 9);
+(149, 'outofstock', '2018-02-06 17:21:40', 9),
+(150, 'almostoutofstock', '2018-04-16 19:04:53', 2),
+(151, 'outofstock', '2018-04-16 19:05:33', 2),
+(152, 'outofstock', '2018-04-16 19:09:17', 2),
+(153, 'outofstock', '2018-04-16 19:09:53', 2),
+(154, 'outofstock', '2018-04-16 19:09:59', 2),
+(155, 'outofstock', '2018-04-16 19:10:04', 2),
+(156, 'outofstock', '2018-04-16 19:12:22', 2),
+(157, 'almostoutofstock', '2018-04-16 20:40:54', 2),
+(158, 'almostoutofstock', '2018-04-16 20:48:04', 2),
+(159, 'almostoutofstock', '2018-04-16 21:42:08', 2);
 
 -- --------------------------------------------------------
 
@@ -648,7 +697,17 @@ INSERT INTO `pill_log_notification` (`Pill_log_notification_id`, `Pill_log_id`, 
 (158, 146, 1, 0),
 (159, 147, 1, 0),
 (160, 148, 1, 0),
-(161, 149, 1, 0);
+(161, 149, 1, 0),
+(162, 150, 1, 0),
+(163, 151, 1, 0),
+(164, 152, 1, 0),
+(165, 153, 1, 0),
+(166, 154, 1, 0),
+(167, 155, 1, 0),
+(168, 156, 1, 0),
+(169, 157, 1, 0),
+(170, 158, 1, 0),
+(171, 159, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -765,7 +824,7 @@ CREATE TABLE `robot_setting` (
 --
 
 INSERT INTO `robot_setting` (`Robot_setting_id`, `Robot_lang`, `Provinces_id`, `Robot_connect_status`, `Pill_dispenser_status`, `Pill_id`) VALUES
-(1, 'thai', 1, 1, 0, 0);
+(1, 'thai', 13, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -788,9 +847,11 @@ INSERT INTO `schedule` (`Schedule_id`, `Schedule_time`, `Schedule_visiblestatus`
 (210, '02:05:00', 0),
 (211, '01:05:00', 0),
 (212, '01:05:00', 0),
-(213, '17:48:25', 1),
+(213, '17:48:25', 0),
 (214, '01:05:00', 0),
-(215, '16:43:00', 1);
+(215, '16:43:00', 1),
+(216, '17:50:00', 1),
+(217, '01:15:00', 1);
 
 -- --------------------------------------------------------
 
@@ -890,6 +951,12 @@ ALTER TABLE `memo_log`
   ADD PRIMARY KEY (`Memo_log_id`);
 
 --
+-- Indexes for table `message_firebase_notification_sent_error_log`
+--
+ALTER TABLE `message_firebase_notification_sent_error_log`
+  ADD PRIMARY KEY (`Message_firebase_notification_sent_error_log_id`);
+
+--
 -- Indexes for table `outsider`
 --
 ALTER TABLE `outsider`
@@ -957,7 +1024,7 @@ ALTER TABLE `slot`
 -- AUTO_INCREMENT for table `behavior`
 --
 ALTER TABLE `behavior`
-  MODIFY `Behavior_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `Behavior_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `behavior_firebase_database_sent_error_log`
 --
@@ -967,22 +1034,22 @@ ALTER TABLE `behavior_firebase_database_sent_error_log`
 -- AUTO_INCREMENT for table `behavior_firebase_notification_sent_error_log`
 --
 ALTER TABLE `behavior_firebase_notification_sent_error_log`
-  MODIFY `Behavior_firebase_notification_sent_error_log_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Behavior_firebase_notification_sent_error_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `behavior_notification`
 --
 ALTER TABLE `behavior_notification`
-  MODIFY `Behavior_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `Behavior_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `Conversation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Conversation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `dispenser`
 --
 ALTER TABLE `dispenser`
-  MODIFY `Dispenser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
+  MODIFY `Dispenser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -992,17 +1059,22 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `memo`
 --
 ALTER TABLE `memo`
-  MODIFY `Memo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Memo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `memo_log`
 --
 ALTER TABLE `memo_log`
-  MODIFY `Memo_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Memo_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `message_firebase_notification_sent_error_log`
+--
+ALTER TABLE `message_firebase_notification_sent_error_log`
+  MODIFY `Message_firebase_notification_sent_error_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `outsider`
 --
 ALTER TABLE `outsider`
-  MODIFY `Outsider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Outsider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `pill`
 --
@@ -1012,12 +1084,12 @@ ALTER TABLE `pill`
 -- AUTO_INCREMENT for table `pill_log`
 --
 ALTER TABLE `pill_log`
-  MODIFY `Pill_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `Pill_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 --
 -- AUTO_INCREMENT for table `pill_log_firebase_database_sent_error_log`
 --
 ALTER TABLE `pill_log_firebase_database_sent_error_log`
-  MODIFY `Pill_log_firebase_database_sent_error_log_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Pill_log_firebase_database_sent_error_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pill_log_firebase_notification_sent_error_log`
 --
@@ -1027,7 +1099,7 @@ ALTER TABLE `pill_log_firebase_notification_sent_error_log`
 -- AUTO_INCREMENT for table `pill_log_notification`
 --
 ALTER TABLE `pill_log_notification`
-  MODIFY `Pill_log_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `Pill_log_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
 --
 -- AUTO_INCREMENT for table `provinces`
 --
@@ -1037,7 +1109,7 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `Schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
+  MODIFY `Schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 --
 -- AUTO_INCREMENT for table `slot`
 --

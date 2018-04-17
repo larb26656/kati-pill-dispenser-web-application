@@ -21,7 +21,7 @@ include("session_check.php");?>
 <script src="jquery-validation/lib/jquery.form.js"></script>
 <script src="jquery-validation/dist/jquery.validate.js"></script>
 <script type="text/javascript">
-        
+
    $(document).ready(function () {
         $('.person').addClass('active');
         $('.add').addClass('active');
@@ -72,7 +72,7 @@ include("session_check.php");?>
             Password: {
                 required: '<?php echo $strPersonpasswordisblank;?>',
                 minlength: '<?php echo $strPersonpasswordisnotminlength;?>',
-                maxlength: '<?php echo $strPersonpasswordisnotmaxlength;?>'             
+                maxlength: '<?php echo $strPersonpasswordisnotmaxlength;?>'
             },
             Confirm_Password: {
                 required: '<?php echo $strPersonconfirmpasswordisblank;?>',
@@ -101,7 +101,7 @@ include("session_check.php");?>
         unhighlight: function (element, errorClass, validClass) {
           $( element ).parents( ".input-container" ).addClass( "has-success" ).removeClass( "has-error" );
         },
-       submitHandler: function(form) {     
+       submitHandler: function(form) {
           var fData = new FormData(document.getElementById("insert_member"));
   $.ajax({
     'type':"POST",
@@ -129,7 +129,7 @@ include("session_check.php");?>
             remote:{
                 url: "include/outsider/check_token.php",
                 type: "post"
-            }            
+            }
           }
         },
         messages: {
@@ -138,7 +138,7 @@ include("session_check.php");?>
           Outsider_level: '<?php echo $strPersonlevelisblank;?>',
           Outsider_token: {
             required: '<?php echo $strPersontokenisblank;?>',
-            remote: '<?php echo $strPersontokenduplicate;?>'   
+            remote: '<?php echo $strPersontokenduplicate;?>'
         }
         },
         errorElement: "em",
@@ -158,7 +158,7 @@ include("session_check.php");?>
         unhighlight: function (element, errorClass, validClass) {
           $( element ).parents( ".input-container" ).addClass( "has-success" ).removeClass( "has-error" );
         },
-       submitHandler: function(form) {     
+       submitHandler: function(form) {
             var fData = new FormData(document.getElementById("insert_outsider"));
   $.ajax({
     'type':"POST",
@@ -169,7 +169,7 @@ include("session_check.php");?>
     'cache':false,
     'success':function(data) {
          window.location="display_person.php";
-         
+
     },
     'error':function(jqXHR,text,error) { alert(error); }
   });
@@ -323,6 +323,9 @@ include("session_check.php");?>
                                                 </option>
                                                 <option value="doctor">
                                                     <?php echo $strPersonleveldoctorlabel;?>
+                                                </option>
+                                                <option value="patient">
+                                                    <?php echo $strPersonlevelpatientlabel;?>
                                                 </option>
                                             </select>
                                         </div>

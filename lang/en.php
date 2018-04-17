@@ -95,6 +95,7 @@
 	$strPersonlevelblanklabel = "--Choose level--";
 	$strPersonlevelcaregiverlabel = "Caregiver";
 	$strPersonleveldoctorlabel = "Doctor";
+	$strPersonlevelpatientlabel = "Patient";
 	$strPersontokenlabel = "Token";
 	$strPersonfirstnameisblank = "Firstname field is required.";
 	$strPersonlastnameisblank = "Lastname field is required.";
