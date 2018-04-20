@@ -1,6 +1,6 @@
 <?php
 include("../connect.php");
-$sql = "SELECT * FROM `robot_setting` INNER JOIN provinces ON robot_setting.Provinces_id=provinces.Provinces_id ";
+$sql = "SELECT * FROM `config` INNER JOIN provinces ON config.Config_value=provinces.Provinces_id WHERE Config_name = 'Robot_provinces_id' AND Config_visiblestatus = '1'";
 $result=$conn->query($sql);
 $row=$result->fetch_assoc();
 ?>

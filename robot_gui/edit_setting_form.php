@@ -36,7 +36,7 @@ include("lang_check.php");
     'processData':false,
     'cache':false,
     'success':function(data) {
-         window.location="normal_face.php";      
+        window.location="normal_face.php";
     },
     'error':function(jqXHR,text,error) { alert(error); }
   });
@@ -57,8 +57,8 @@ include("lang_check.php");
 </script>
 <body>
 <?php include("../connect.php");
-$sql3 = "SELECT * FROM `robot_setting`";
-$result3=$conn->query($sql3); 
+$sql3 = "SELECT Config_value FROM `config` WHERE Config_name = 'Robot_lang' AND Config_visiblestatus = '1'";
+$result3=$conn->query($sql3);
 $row3=$result3->fetch_assoc();
 ?>
 <div id="box">
@@ -71,25 +71,25 @@ $row3=$result3->fetch_assoc();
     <label class="control-label col-sm-3" for="robot_lang"><?php echo $strRobotguirobotlanglabel;?></label>
     <div class="col-sm-5">
       <select class="form-control" id="robot_lang" name="robot_lang">
-    <option value="thai" <?php if("thai"==$row3['Robot_lang']){echo 'selected="selected"';}?>><?php echo $strThailang;?></option>
-    <option value="english" <?php if("english"==$row3['Robot_lang']){echo 'selected="selected"';}?>><?php echo $strEnglishlang?></option>
+    <option value="thai" <?php if("thai"==$row3['Config_value']){echo 'selected="selected"';}?>><?php echo $strThailang;?></option>
+    <option value="english" <?php if("english"==$row3['Config_value']){echo 'selected="selected"';}?>><?php echo $strEnglishlang?></option>
   </select>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-3" for="display_ip"><?php echo $strRobotguidisplayiplabel;?></label>
-    <div class="col-sm-5"> 
+    <div class="col-sm-5">
       <label class="control-label col-sm-2" id="display_ip" name="display_ip"><?php echo file_get_contents('http://127.0.0.1:5000/get_ip');?></label>
     </div>
   </div>
     <div class="form-group">
     <label class="control-label col-sm-3"><?php echo $strRobotguiprovincesidlabel;?></label>
-    <div class="col-sm-5"> 
+    <div class="col-sm-5">
      <select class="form-control" id="provinces_id" name="provinces_id">
      </select>
     </div>
   </div>
-  <div class="form-group"> 
+  <div class="form-group">
     <div class="col-sm-offset-3 col-sm-10">
       <button type="submit" class="btn btn-default"><?php echo $strFormsubmitbutton;?></button>
     </div>
