@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2018 at 03:43 AM
+-- Generation Time: Apr 21, 2018 at 11:30 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -53,29 +53,6 @@ INSERT INTO `behavior` (`Behavior_id`, `Behavior_type`, `Behavior_datetime`, `Sc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `behavior_firebase_database_sent_error_log`
---
-
-CREATE TABLE `behavior_firebase_database_sent_error_log` (
-  `Behavior_firebase_database_sent_error_log_id` int(11) NOT NULL,
-  `Behavior_id` int(11) NOT NULL,
-  `Outsider_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `behavior_firebase_notification_sent_error_log`
---
-
-CREATE TABLE `behavior_firebase_notification_sent_error_log` (
-  `Behavior_firebase_notification_sent_error_log_id` int(11) NOT NULL,
-  `Behavior_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `behavior_notification`
 --
 
@@ -95,14 +72,39 @@ INSERT INTO `behavior_notification` (`Behavior_notification_id`, `Behavior_id`, 
 (30, 31, 1, 0),
 (31, 32, 1, 0),
 (32, 33, 1, 0),
-(33, 34, 1, 1),
-(34, 35, 1, 1),
-(35, 36, 1, 1),
-(36, 37, 1, 1),
-(37, 38, 1, 1),
-(38, 39, 1, 1),
-(39, 40, 1, 1),
-(40, 41, 1, 1);
+(33, 34, 1, 0),
+(34, 35, 1, 0),
+(35, 36, 1, 0),
+(36, 37, 1, 0),
+(37, 38, 1, 0),
+(38, 39, 1, 0),
+(39, 40, 1, 0),
+(40, 41, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `config`
+--
+
+CREATE TABLE `config` (
+  `Config_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Config_value` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Config_visiblestatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `config`
+--
+
+INSERT INTO `config` (`Config_name`, `Config_value`, `Config_visiblestatus`) VALUES
+('Robot_connect_status', '0', 1),
+('Robot_face_status', 'normal', 1),
+('Robot_lang', 'thai', 1),
+('Robot_pill_dispenser_pill_id', '0', 1),
+('Robot_pill_dispenser_status', '0', 1),
+('Robot_provinces_id', '5', 1),
+('Robot_status', 'free', 1);
 
 -- --------------------------------------------------------
 
@@ -164,6 +166,18 @@ INSERT INTO `dispenser` (`Dispenser_id`, `Schedule_id`, `Slot_id`) VALUES
 (268, 216, 19),
 (269, 216, 20),
 (270, 217, 19);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `firebase_error_log`
+--
+
+CREATE TABLE `firebase_error_log` (
+  `Firebase_error_log_id` int(11) NOT NULL,
+  `Firebase_error_log_service` enum('notification','database') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Firebase_error_log_JSON_detail` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -268,17 +282,6 @@ INSERT INTO `memo_log` (`Memo_log_id`, `Memo_id`, `Memo_log_datetime`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message_firebase_notification_sent_error_log`
---
-
-CREATE TABLE `message_firebase_notification_sent_error_log` (
-  `Message_firebase_notification_sent_error_log_id` int(11) NOT NULL,
-  `Message_desc` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `outsider`
 --
 
@@ -302,7 +305,8 @@ INSERT INTO `outsider` (`Outsider_id`, `Outsider_firstname`, `Outsider_surname`,
 (14, 'สมชาย', 'อดนอน', 'patient', 'dEmAPcx0lXE:APA91bEvgBOIzqCkRyfKjiycsVoDEhv75jOkQJDYcb5L9GyAUyS3-RnWeIBQihxzefzJhcTvhIhlSxTFJL4SGFc8Gkd5V0jge_-AlhBLpXiLS8q2TM_f9miBZVvNUndL_Gxsg1nSK44v', 1),
 (15, 'test', 'tttt', 'doctor', '111', 0),
 (16, 'asdxxx', 'asd', 'caregiver', 's', 0),
-(17, 'asda', 'sdas', 'patient', 'sdas', 0);
+(17, 'asda', 'sdas', 'patient', 'sdas', 0),
+(18, 'robot', 'bot', 'doctor', 'cuidcpkuVTI:APA91bH7ezsuXlsseTCFhWmuo1F6u_3gWOytRmg1pOFzuFVMakG49ngGRgHzN1cvCsI5cDSjxUCoecg3_rcKzygjRW36QvPVZFWsgf9C9bz6O2qDLgiJxBKfAaG9w7arSK2LezquAZnG', 1);
 
 -- --------------------------------------------------------
 
@@ -516,30 +520,23 @@ INSERT INTO `pill_log` (`Pill_log_id`, `Pill_log_type`, `Pill_log_datetime`, `Pi
 (156, 'outofstock', '2018-04-16 19:12:22', 2),
 (157, 'almostoutofstock', '2018-04-16 20:40:54', 2),
 (158, 'almostoutofstock', '2018-04-16 20:48:04', 2),
-(159, 'almostoutofstock', '2018-04-16 21:42:08', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pill_log_firebase_database_sent_error_log`
---
-
-CREATE TABLE `pill_log_firebase_database_sent_error_log` (
-  `Pill_log_firebase_database_sent_error_log_id` int(11) NOT NULL,
-  `Pill_log_id` int(11) NOT NULL,
-  `Outsider_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pill_log_firebase_notification_sent_error_log`
---
-
-CREATE TABLE `pill_log_firebase_notification_sent_error_log` (
-  `Pill_log_firebase_notification_sent_error_log_id` int(11) NOT NULL,
-  `Pill_log_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
+(159, 'almostoutofstock', '2018-04-16 21:42:08', 2),
+(160, 'outofstock', '2018-04-19 03:09:31', 1),
+(161, 'outofstock', '2018-04-19 03:10:09', 1),
+(162, 'outofstock', '2018-04-19 03:11:49', 1),
+(163, 'outofstock', '2018-04-19 03:13:27', 1),
+(164, 'outofstock', '2018-04-19 03:14:03', 1),
+(165, 'outofstock', '2018-04-19 03:23:28', 1),
+(166, 'outofstock', '2018-04-19 03:27:25', 1),
+(167, 'outofstock', '2018-04-19 03:28:26', 1),
+(168, 'outofstock', '2018-04-19 04:06:27', 1),
+(169, 'outofstock', '2018-04-19 13:46:00', 1),
+(170, 'outofstock', '2018-04-19 13:46:28', 1),
+(171, 'outofstock', '2018-04-19 13:46:48', 1),
+(172, 'outofstock', '2018-04-19 13:51:51', 1),
+(173, 'outofstock', '2018-04-20 00:29:47', 1),
+(174, 'outofstock', '2018-04-20 00:30:03', 1),
+(175, 'outofstock', '2018-04-20 00:31:46', 1);
 
 -- --------------------------------------------------------
 
@@ -707,7 +704,23 @@ INSERT INTO `pill_log_notification` (`Pill_log_notification_id`, `Pill_log_id`, 
 (168, 156, 1, 0),
 (169, 157, 1, 0),
 (170, 158, 1, 0),
-(171, 159, 1, 0);
+(171, 159, 1, 0),
+(172, 160, 1, 1),
+(173, 161, 1, 1),
+(174, 162, 1, 1),
+(175, 163, 1, 1),
+(176, 164, 1, 1),
+(177, 165, 1, 1),
+(178, 166, 1, 1),
+(179, 167, 1, 1),
+(180, 168, 1, 1),
+(181, 169, 1, 1),
+(182, 170, 1, 1),
+(183, 171, 1, 1),
+(184, 172, 1, 1),
+(185, 173, 1, 1),
+(186, 174, 1, 1),
+(187, 175, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -903,22 +916,16 @@ ALTER TABLE `behavior`
   ADD PRIMARY KEY (`Behavior_id`);
 
 --
--- Indexes for table `behavior_firebase_database_sent_error_log`
---
-ALTER TABLE `behavior_firebase_database_sent_error_log`
-  ADD PRIMARY KEY (`Behavior_firebase_database_sent_error_log_id`);
-
---
--- Indexes for table `behavior_firebase_notification_sent_error_log`
---
-ALTER TABLE `behavior_firebase_notification_sent_error_log`
-  ADD PRIMARY KEY (`Behavior_firebase_notification_sent_error_log_id`);
-
---
 -- Indexes for table `behavior_notification`
 --
 ALTER TABLE `behavior_notification`
   ADD PRIMARY KEY (`Behavior_notification_id`);
+
+--
+-- Indexes for table `config`
+--
+ALTER TABLE `config`
+  ADD PRIMARY KEY (`Config_name`);
 
 --
 -- Indexes for table `conversation`
@@ -931,6 +938,12 @@ ALTER TABLE `conversation`
 --
 ALTER TABLE `dispenser`
   ADD PRIMARY KEY (`Dispenser_id`);
+
+--
+-- Indexes for table `firebase_error_log`
+--
+ALTER TABLE `firebase_error_log`
+  ADD PRIMARY KEY (`Firebase_error_log_id`);
 
 --
 -- Indexes for table `member`
@@ -951,12 +964,6 @@ ALTER TABLE `memo_log`
   ADD PRIMARY KEY (`Memo_log_id`);
 
 --
--- Indexes for table `message_firebase_notification_sent_error_log`
---
-ALTER TABLE `message_firebase_notification_sent_error_log`
-  ADD PRIMARY KEY (`Message_firebase_notification_sent_error_log_id`);
-
---
 -- Indexes for table `outsider`
 --
 ALTER TABLE `outsider`
@@ -973,18 +980,6 @@ ALTER TABLE `pill`
 --
 ALTER TABLE `pill_log`
   ADD PRIMARY KEY (`Pill_log_id`);
-
---
--- Indexes for table `pill_log_firebase_database_sent_error_log`
---
-ALTER TABLE `pill_log_firebase_database_sent_error_log`
-  ADD PRIMARY KEY (`Pill_log_firebase_database_sent_error_log_id`);
-
---
--- Indexes for table `pill_log_firebase_notification_sent_error_log`
---
-ALTER TABLE `pill_log_firebase_notification_sent_error_log`
-  ADD PRIMARY KEY (`Pill_log_firebase_notification_sent_error_log_id`);
 
 --
 -- Indexes for table `pill_log_notification`
@@ -1026,16 +1021,6 @@ ALTER TABLE `slot`
 ALTER TABLE `behavior`
   MODIFY `Behavior_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
--- AUTO_INCREMENT for table `behavior_firebase_database_sent_error_log`
---
-ALTER TABLE `behavior_firebase_database_sent_error_log`
-  MODIFY `Behavior_firebase_database_sent_error_log_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `behavior_firebase_notification_sent_error_log`
---
-ALTER TABLE `behavior_firebase_notification_sent_error_log`
-  MODIFY `Behavior_firebase_notification_sent_error_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
 -- AUTO_INCREMENT for table `behavior_notification`
 --
 ALTER TABLE `behavior_notification`
@@ -1050,6 +1035,11 @@ ALTER TABLE `conversation`
 --
 ALTER TABLE `dispenser`
   MODIFY `Dispenser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
+--
+-- AUTO_INCREMENT for table `firebase_error_log`
+--
+ALTER TABLE `firebase_error_log`
+  MODIFY `Firebase_error_log_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `member`
 --
@@ -1066,15 +1056,10 @@ ALTER TABLE `memo`
 ALTER TABLE `memo_log`
   MODIFY `Memo_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `message_firebase_notification_sent_error_log`
---
-ALTER TABLE `message_firebase_notification_sent_error_log`
-  MODIFY `Message_firebase_notification_sent_error_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
 -- AUTO_INCREMENT for table `outsider`
 --
 ALTER TABLE `outsider`
-  MODIFY `Outsider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Outsider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `pill`
 --
@@ -1084,22 +1069,12 @@ ALTER TABLE `pill`
 -- AUTO_INCREMENT for table `pill_log`
 --
 ALTER TABLE `pill_log`
-  MODIFY `Pill_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
---
--- AUTO_INCREMENT for table `pill_log_firebase_database_sent_error_log`
---
-ALTER TABLE `pill_log_firebase_database_sent_error_log`
-  MODIFY `Pill_log_firebase_database_sent_error_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `pill_log_firebase_notification_sent_error_log`
---
-ALTER TABLE `pill_log_firebase_notification_sent_error_log`
-  MODIFY `Pill_log_firebase_notification_sent_error_log_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Pill_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 --
 -- AUTO_INCREMENT for table `pill_log_notification`
 --
 ALTER TABLE `pill_log_notification`
-  MODIFY `Pill_log_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+  MODIFY `Pill_log_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
 --
 -- AUTO_INCREMENT for table `provinces`
 --
