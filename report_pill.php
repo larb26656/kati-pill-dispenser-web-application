@@ -42,7 +42,6 @@ include("connect.php"); ?>
   <li class="brand"><?php echo $strReport;?></li>
   <li><a href="report_behavior.php" class="behavior"><i class="fa fa-line-chart" aria-hidden="true"></i> <?php echo $strSubmenubehaviorinformation;?></a></li>
     <li><a href="#" class="pill_log"><i class="fa fa-line-chart" aria-hidden="true"></i> <?php echo $strSubmenupillinformation;?></a></li>
-<li><a href="report_log.php" class="log" ><i class="fa fa-line-chart" aria-hidden="true"></i> <?php echo $strSubmenuloginformation;?></a></li>
 </ul>
      </div>
       <div class="col-md-12">
