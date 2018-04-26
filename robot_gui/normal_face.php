@@ -1,10 +1,10 @@
 <?php
 include("lang_check.php");
 require_once '../connect.php';
-$sql = "SELECT * FROM robot_setting";
+$sql = "SELECT Config_value FROM `config` WHERE Config_name = 'Robot_lang' AND Config_visiblestatus = '1'";
 $result = mysqli_query($conn, $sql);
 $row=$result->fetch_assoc();
-$directory='"images/'.$row['Robot_lang'].'/normal_face.png"';
+$directory='"images/'.$row['Config_value'].'/normal_face.png"';
 ?>
 <!DOCTYPE html>
 <html>
