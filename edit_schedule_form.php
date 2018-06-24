@@ -26,8 +26,6 @@ include("session_check.php");?>
         $( "#hours" ).change(function() {
           select_minutes_edit($('#hours').val(),<?php echo $Schedule_id;?>);
         });
-        // add database data temp
-         //slot_id_temp = get_json_slot_id_temp();
          set_slot_id_temp_first_time('<?php echo $Schedule_id; ?>');
        
          // form submit
