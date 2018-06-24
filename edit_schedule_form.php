@@ -14,12 +14,11 @@ include("session_check.php");?>
 <link href="bootstrap/css/custom.css" rel="stylesheet"/>
 <script src="sweetalert-master/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
-<link rel="stylesheet" href="bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css">
 <script src="jquery-validation/lib/jquery.form.js"></script>
 <script src="jquery-validation/dist/jquery.validate.js"></script>
 
 <script type="text/javascript">
-var slot_id_temp = [];
+  var slot_id_temp = [];
    $(document).ready(function () {
         $('.schedule').addClass('active');
         $('.add').addClass('active');
@@ -27,20 +26,10 @@ var slot_id_temp = [];
         $( "#hours" ).change(function() {
           select_minutes_edit($('#hours').val(),<?php echo $Schedule_id;?>);
         });
-        //add database data temp
-        <?php
-        include("connect.php");
-        $sql = "SELECT * FROM `schedule` WHERE Schedule_id='$Schedule_id'";
-        $result=$conn->query($sql);
-        $row=$result->fetch_assoc();
-        $sql2 = "SELECT * FROM `dispenser` INNER JOIN slot ON dispenser.Slot_id = slot.Slot_id INNER JOIN pill ON slot.Pill_id = pill.Pill_id WHERE Schedule_id = '$Schedule_id'";
-        $result2=$conn->query($sql2);
-         while($row2=$result2->fetch_assoc()){
-         ?>
-        insert_slot_id_temp_first_time("<?php echo $row2['Slot_id']?>");
-         <?php  } ?>
-         select_slot_temp();
-         select_slot();
+        // add database data temp
+         //slot_id_temp = get_json_slot_id_temp();
+         set_slot_id_temp_first_time('<?php echo $Schedule_id; ?>');
+       
          // form submit
         jQuery.validator.addMethod("check_slot_temp_length", function(value, element) {
           if(value>0){
@@ -110,7 +99,6 @@ function select_slot_temp(){
     }
   });
 }
-select_slot_temp();
 function select_slot(){
   var info = 'slot_id_temp=' + slot_id_temp;
   $.ajax({
@@ -122,7 +110,6 @@ function select_slot(){
     }
   });
 }
-select_slot();
 function select_hours_edit(schedule_id){
   var info = 'schedule_id=' + schedule_id;
   $.ajax({
@@ -144,6 +131,19 @@ function select_minutes_edit(hours,schedule_id){
     url:"include/schedule/select_time_picker_minutes_edit.php",
     success:function(data){
       $("#minutes").html(data);
+    }
+  });
+}
+function set_slot_id_temp_first_time(schedule_id){
+  var info = 'schedule_id=' + schedule_id;
+  $.ajax({
+    type:"GET",
+    data:info,
+    url:"include/schedule/get_json_slot_id_temp.php",
+    success:function(data){
+      slot_id_temp = JSON.parse(data);
+      select_slot_temp();
+      select_slot();
     }
   });
 }
@@ -185,9 +185,6 @@ function(){
   select_slot_temp();
   select_slot();
 });
-}
-function insert_slot_id_temp_first_time(id){
-slot_id_temp.push(id);
 }
 </script>
 </head>
@@ -256,6 +253,4 @@ slot_id_temp.push(id);
   </div>
 </div>
 </body>
-<script type="text/javascript">
-</script>
 </html>
